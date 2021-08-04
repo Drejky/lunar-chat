@@ -1,19 +1,19 @@
+import { getRepository } from 'typeorm';
 import CreateRoomDto from './dto/create-room.dto';
 import { Room } from './entities/room.entity';
 
 export default class RoomService {
-  private rooms: Room[] = [];
+  private roomsRepository = getRepository(Room);
 
-  public findAll() {
-    return this.rooms;
+  public async findAll() {
+    return this.roomsRepository.find();
   }
 
-  public create(createRoomDto: CreateRoomDto) {
+  public async create(createRoomDto: CreateRoomDto) {
     const newRoom = new Room();
     newRoom.name = createRoomDto.name;
     newRoom.description = createRoomDto.description;
     newRoom.maxUserCount = createRoomDto.maxUserCount;
-    this.rooms.push(newRoom);
-    return newRoom;
+    return this.roomsRepository.save(newRoom);
   }
 }
