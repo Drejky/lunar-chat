@@ -1,8 +1,9 @@
 import validationHandler from '../middlewares/validationHandler';
-import Controller from '../classes/Controller';
+import Controller from '../core/Controller';
 import RoomService from './room.service';
 import CreateRoomDto from './dto/create-room.dto';
-import RoomAlreadyExists from '../exceptions/RoomAlreadyExists';
+import BadRequestException from '../core/exceptions/BadRequestException';
+import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
 
 export default class RoomController extends Controller {
   protected path = '/room';
@@ -20,7 +21,8 @@ export default class RoomController extends Controller {
         try {
           res.send(await this.roomService.create(req.body));
         } catch (err) {
-          if (err.code == 23505) next(new RoomAlreadyExists());
+          if (err instanceof RoomAlreadyExistsError)
+            next(new BadRequestException(err.message));
           else next(err);
         }
       },

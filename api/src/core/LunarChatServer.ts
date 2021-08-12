@@ -14,15 +14,11 @@ export default class LunarChatServer {
     this.port = port;
   }
 
-  public init() {
+  public async start() {
+    await createConnection();
     this.initMiddlewares();
     this.initRoutes([new UserController(), new RoomController()]);
     this.initErrorHandlers();
-  }
-
-  public async start() {
-    await createConnection();
-    this.init();
     this.app.listen(this.port, () => {
       console.log('Server listening at port', this.port);
     });
