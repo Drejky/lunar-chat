@@ -1,5 +1,4 @@
 import CreateUserDto from './dto/create-user.dto';
-import DeleteUserDto from './dto/delete-user.dto';
 import { User } from './entities/user.entity';
 import { getRepository } from 'typeorm';
 
