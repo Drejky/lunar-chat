@@ -10,6 +10,5 @@ export default class CreateUserDto {
   tripcode?: string;
 
   @IsString()
-  @IsOptional()
   icon: string;
 }

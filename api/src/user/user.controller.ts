@@ -20,13 +20,5 @@ export default class UserController extends Controller {
         res.send(await this.userService.create(req.body));
       },
     );
-
-    this.router.delete(
-      '/',
-      validationHandler(DeleteUserDto),
-      async (req, res) => {
-        res.send(await this.userService.delete(req.body));
-      },
-    );
   }
 }
