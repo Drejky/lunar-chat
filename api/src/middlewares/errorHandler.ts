@@ -7,8 +7,9 @@ export default function errorHandler(
   res: Response,
   next: NextFunction,
 ) {
-  const status = err.status || 500;
-  const message = err.message || 'Internal Server Error';
-  const properties = err.properties;
-  res.status(status).send({ status, message, properties });
+  let { status, message, ...other } = err;
+  status = status || 500;
+  message = message || 'Internal Server Error';
+  const name = err.constructor.name;
+  res.status(status).send({ status, name, message, ...other });
 }

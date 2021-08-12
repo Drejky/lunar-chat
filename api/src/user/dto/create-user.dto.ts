@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber, isString } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
 
 export default class CreateUserDto {
   @IsString()
@@ -6,6 +6,7 @@ export default class CreateUserDto {
   name: string;
 
   @IsString()
+  @IsOptional()
   tripcode?: string;
 
   @IsString()
