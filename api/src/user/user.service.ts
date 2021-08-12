@@ -1,4 +1,5 @@
 import CreateUserDto from './dto/create-user.dto';
+import DeleteUserDto from './dto/delete-user.dto';
 import { Users } from './entities/user.entity';
 import { getRepository } from 'typeorm';
 
@@ -19,5 +20,9 @@ export default class UserService {
     newUser.icon = createUserDto.icon;
     newUser.tripcode = createUserDto.tripcode;
     return this.userRepository.save(newUser);
+  }
+
+  public async delete(deleteUserDto: DeleteUserDto) {
+    return this.userRepository.delete(deleteUserDto.id);
   }
 }
