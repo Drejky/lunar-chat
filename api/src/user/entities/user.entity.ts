@@ -5,12 +5,12 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false, unique: true })
+  @Column({ type: 'text', nullable: false, unique: true })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   tripcode?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   icon: string;
 }

@@ -1,4 +1,4 @@
-import LunarChatServer from './classes/LunarChatServer';
+import LunarChatServer from './core/LunarChatServer';
 
 async function main() {
   const port = parseInt(process.env.PORT) || 8080;

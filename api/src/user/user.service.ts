@@ -10,10 +10,11 @@ export default class UserService {
   }
 
   public async create(createUserDto: CreateUserDto) {
+    const { name, icon, tripcode } = createUserDto;
     const newUser = new User();
-    newUser.name = createUserDto.name;
-    newUser.icon = createUserDto.icon;
-    newUser.tripcode = createUserDto.tripcode;
+    newUser.name = name;
+    newUser.icon = icon;
+    newUser.tripcode = tripcode;
     return this.userRepository.save(newUser);
   }
 }

@@ -1,5 +1,5 @@
 import validationHandler from '../middlewares/validationHandler';
-import Controller from '../classes/Controller';
+import Controller from '../core/Controller';
 import UserService from './user.service';
 import CreateUserDto from './dto/create-user.dto';
 

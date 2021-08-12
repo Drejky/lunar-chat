@@ -5,12 +5,12 @@ export class Room {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false, unique: true })
+  @Column({ type: 'text', nullable: false, unique: true })
   name: string;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'number', nullable: false })
   maxUserCount: number;
 }
