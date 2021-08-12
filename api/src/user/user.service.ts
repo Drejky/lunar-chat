@@ -1,19 +1,23 @@
 import CreateUserDto from './dto/create-user.dto';
 import { User } from './entities/user.entity';
+import { getRepository } from 'typeorm';
 
 export default class UserService {
-  private users: User[] = [];
+  private userRepository = getRepository(User);
 
-  public findAll() {
-    return this.users;
+  public async findAll() {
+    //this.userRepository.query(`SELECT * FROM "user"`).then((data) => {
+    //  console.log(data);
+    //  return data;
+    //});
+    return this.userRepository.find();
   }
 
-  public create(createUserDto: CreateUserDto) {
+  public async create(createUserDto: CreateUserDto) {
     const newUser = new User();
     newUser.name = createUserDto.name;
     newUser.icon = createUserDto.icon;
     newUser.tripcode = createUserDto.tripcode;
-    this.users.push(newUser);
-    return newUser;
+    return this.userRepository.save(newUser);
   }
 }
