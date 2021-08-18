@@ -38,6 +38,7 @@ export default class RoomService {
   public async createMessage(id: string, createMessageDto: CreateMessageDto) {
     const newMessage = new Message();
     newMessage.content = createMessageDto.content;
+    newMessage.created_at = new Date();
     console.log(+id);
     return this.messageRepository.save(newMessage);
   }
