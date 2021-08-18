@@ -1,10 +1,13 @@
 import { getRepository } from 'typeorm';
+import CreateMessageDto from './dto/create-message.dto';
 import CreateRoomDto from './dto/create-room.dto';
+import { Message } from './entities/message.entity';
 import { Room } from './entities/room.entity';
 import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
 
 export default class RoomService {
   private roomsRepository = getRepository(Room);
+  private messageRepository = getRepository(Message);
 
   public async findAll() {
     return this.roomsRepository.find();
@@ -26,5 +29,17 @@ export default class RoomService {
     newRoom.description = description;
     newRoom.maxUserCount = maxUserCount;
     return this.roomsRepository.save(newRoom);
+  }
+
+  public async findAllMessages() {
+    return this.messageRepository.find();
+  }
+
+  public async createMessage(id: string, createMessageDto: CreateMessageDto) {
+    const newMessage = new Message();
+    newMessage.content = createMessageDto.content;
+    newMessage.created_at = new Date();
+    console.log(+id);
+    return this.messageRepository.save(newMessage);
   }
 }
