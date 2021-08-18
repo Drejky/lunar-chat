@@ -2,6 +2,7 @@ import validationHandler from '../middlewares/validationHandler';
 import Controller from '../core/Controller';
 import RoomService from './room.service';
 import CreateRoomDto from './dto/create-room.dto';
+import CreateMessageDto from './dto/create-message.dto';
 import BadRequestException from '../core/exceptions/BadRequestException';
 import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
 
@@ -27,5 +28,17 @@ export default class RoomController extends Controller {
         }
       },
     );
+
+    this.router.post(
+      '/:id',
+      validationHandler(CreateMessageDto),
+      async (req, res) => {
+        res.send(await this.roomService.createMessage(req.params.id, req.body));
+      },
+    );
+
+    this.router.get('/:id', async (req, res) => {
+      res.send(await this.roomService.findAllMessages());
+    });
   }
 }
