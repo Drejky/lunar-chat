@@ -11,6 +11,6 @@ export class Room {
   @Column({ type: 'text', nullable: true })
   description: string;
 
-  @Column({ type: 'number', nullable: false })
+  @Column({ type: 'integer', nullable: false })
   maxUserCount: number;
 }
