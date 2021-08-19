@@ -35,11 +35,13 @@ export default class RoomService {
     return this.messageRepository.find();
   }
 
-  public async createMessage(id: string, createMessageDto: CreateMessageDto) {
+  public async createMessage(
+    roomId: string,
+    createMessageDto: CreateMessageDto,
+  ) {
     const newMessage = new Message();
     newMessage.content = createMessageDto.content;
     newMessage.created_at = new Date();
-    console.log(+id);
     return this.messageRepository.save(newMessage);
   }
 }
