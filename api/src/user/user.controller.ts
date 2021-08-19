@@ -15,8 +15,14 @@ export default class UserController extends Controller {
     this.router.post(
       '/',
       validationHandler(CreateUserDto),
-      async (req, res) => {
-        res.send(await this.userService.create(req.body));
+      async (req, res, next) => {
+        try {
+          const user = await this.userService.create(req.body);
+          req.session.user = user;
+          res.send(user);
+        } catch (err) {
+          next(err);
+        }
       },
     );
   }
