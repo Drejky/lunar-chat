@@ -10,6 +10,7 @@ export default class UserService {
   }
 
   public async create(createUserDto: CreateUserDto) {
+    // Todo: Check whether user already exists.
     const { name, icon, tripcode } = createUserDto;
     const newUser = new User();
     newUser.name = name;

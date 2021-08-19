@@ -39,6 +39,8 @@ export default class RoomService {
     roomId: string,
     createMessageDto: CreateMessageDto,
   ) {
+    // Todo: Check whether room with given ID exists
+    // Todo: Check whether user is a member of the room
     const newMessage = new Message();
     newMessage.content = createMessageDto.content;
     newMessage.created_at = new Date();
