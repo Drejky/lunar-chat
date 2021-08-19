@@ -5,6 +5,7 @@ import CreateRoomDto from './dto/create-room.dto';
 import CreateMessageDto from './dto/create-message.dto';
 import BadRequestException from '../core/exceptions/BadRequestException';
 import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
+import isAuthenticated from '../middlewares/isAuthenticated';
 
 export default class RoomController extends Controller {
   protected path = '/room';
@@ -17,6 +18,7 @@ export default class RoomController extends Controller {
 
     this.router.post(
       '/',
+      isAuthenticated,
       validationHandler(CreateRoomDto),
       async (req, res, next) => {
         try {
@@ -31,13 +33,14 @@ export default class RoomController extends Controller {
 
     this.router.post(
       '/:id',
+      isAuthenticated,
       validationHandler(CreateMessageDto),
       async (req, res) => {
         res.send(await this.roomService.createMessage(req.params.id, req.body));
       },
     );
 
-    this.router.get('/:id', async (req, res) => {
+    this.router.get('/:id', isAuthenticated, async (req, res) => {
       res.send(await this.roomService.findAllMessages());
     });
   }
