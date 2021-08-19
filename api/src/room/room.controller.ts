@@ -12,7 +12,7 @@ export default class RoomController extends Controller {
   private roomService = new RoomService();
 
   protected initRoutes() {
-    this.router.get('/', async (req, res) => {
+    this.router.get('/', isAuthenticated, async (req, res) => {
       res.send(await this.roomService.findAll());
     });
 
