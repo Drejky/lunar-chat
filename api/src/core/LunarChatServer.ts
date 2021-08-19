@@ -4,6 +4,7 @@ import errorHandler from '../middlewares/errorHandler';
 import Controller from './Controller';
 import RoomController from '../room/room.controller';
 import { createConnection } from 'typeorm';
+import session from 'express-session';
 
 export default class LunarChatServer {
   public app: Application;
@@ -27,6 +28,13 @@ export default class LunarChatServer {
   private initMiddlewares() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(
+      session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+      }),
+    );
   }
 
   private initErrorHandlers() {

@@ -1,4 +1,5 @@
 import LunarChatServer from './core/LunarChatServer';
+import * as dotenv from 'dotenv';
 
 async function main() {
   const port = parseInt(process.env.PORT) || 8080;
@@ -6,4 +7,5 @@ async function main() {
   server.start();
 }
 
+dotenv.config();
 main().catch((err) => console.log(err));
