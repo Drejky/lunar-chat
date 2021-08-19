@@ -3,7 +3,7 @@ import CreateMessageDto from './dto/create-message.dto';
 import CreateRoomDto from './dto/create-room.dto';
 import { Message } from './entities/message.entity';
 import { Room } from './entities/room.entity';
-import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
+import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistsError';
 
 export default class RoomService {
   private roomsRepository = getRepository(Room);
@@ -35,11 +35,15 @@ export default class RoomService {
     return this.messageRepository.find();
   }
 
-  public async createMessage(id: string, createMessageDto: CreateMessageDto) {
+  public async createMessage(
+    roomId: string,
+    createMessageDto: CreateMessageDto,
+  ) {
+    // Todo: Check whether room with given ID exists
+    // Todo: Check whether user is a member of the room
     const newMessage = new Message();
     newMessage.content = createMessageDto.content;
     newMessage.created_at = new Date();
-    console.log(+id);
     return this.messageRepository.save(newMessage);
   }
 }
