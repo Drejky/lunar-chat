@@ -9,6 +9,10 @@ export default class UserService {
     return this.userRepository.find();
   }
 
+  public async delete(user: User) {
+    return this.userRepository.delete(user);
+  }
+
   public async create(createUserDto: CreateUserDto) {
     // Todo: Check whether user already exists.
     const { name, icon, tripcode } = createUserDto;
