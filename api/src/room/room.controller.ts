@@ -4,7 +4,7 @@ import RoomService from './room.service';
 import CreateRoomDto from './dto/create-room.dto';
 import CreateMessageDto from './dto/create-message.dto';
 import BadRequestException from '../core/exceptions/BadRequestException';
-import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
+import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistsError';
 import isAuthenticated from '../middlewares/isAuthenticated';
 
 export default class RoomController extends Controller {

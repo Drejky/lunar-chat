@@ -3,7 +3,7 @@ import CreateMessageDto from './dto/create-message.dto';
 import CreateRoomDto from './dto/create-room.dto';
 import { Message } from './entities/message.entity';
 import { Room } from './entities/room.entity';
-import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistrsError';
+import RoomAlreadyExistsError from './exceptions/RoomAlreadyExistsError';
 
 export default class RoomService {
   private roomsRepository = getRepository(Room);
